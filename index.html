@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Camacho Digital Studio — Invitaciones, diseño, fotografía y web
+    </title>
+    <meta
+      name="description"
+      content="Invitaciones digitales interactivas, diseño gráfico, fotografía y soluciones web hechas con creatividad y pasión."
+    />
+    <meta name="theme-color" content="#0e0f12" />
+    <!-- Open Graph / Compartir -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Camacho Digital Studio" />
+    <meta
+      property="og:description"
+      content="Invitaciones digitales interactivas, diseño gráfico, fotografía y soluciones web."
+    />
+    <meta property="og:image" content="assets/og-cover.jpg" />
+    <link rel="icon" href="assets/favicon.svg" />
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header" id="top">
+      <div class="container nav-wrap">
+        <a
+          href="#inicio"
+          class="brand"
+          aria-label="Camacho Digital Studio — Inicio"
+        >
+          <img
+            class="site-logo"
+            src="assets/logo-banner.svg"
+            alt="Camacho Digital Studio"
+          />
+          <span class="brand-name">Camacho Digital Studio</span>
+        </a>
+        <nav class="primary-nav" aria-label="Navegación principal">
+          <a href="#servicios">Servicios</a>
+          <a href="#portafolio">Portafolio</a>
+          <a href="#testimonios">Testimonios</a>
+          <a href="#contacto">Contacto</a>
+          <a class="btn outline" href="#contacto">Pedir cotización</a>
+        </nav>
+        <button
+          class="hamburger"
+          id="menuBtn"
+          aria-controls="mobilePanel"
+          aria-expanded="false"
+          aria-label="Abrir menú"
+        >
+          <span></span>
+        </button>
+      </div>
+      <div class="mobile-panel" id="mobilePanel">
+        <nav aria-label="Navegación móvil">
+          <a href="#servicios">Servicios</a>
+          <a href="#portafolio">Portafolio</a>
+          <a href="#testimonios">Testimonios</a>
+          <a href="#contacto">Contacto</a>
+          <a class="btn primary" href="#contacto">Pedir cotización</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <!-- HERO -->
+      <section class="hero" aria-label="Bienvenida">
+        <div class="content container" data-reveal>
+          <div class="kicker">Bienvenidos a</div>
+          <h1>Camacho Digital Studio</h1>
+          <p>
+            Soy Arturo Camacho y aquí encontrarás
+            <strong>invitaciones digitales interactivas</strong>,
+            <strong>diseño gráfico</strong>, <strong>fotografía</strong> y
+            <strong>soluciones web</strong> hechas con creatividad y pasión.
+            Este espacio es para mostrar mi trabajo, compartir ideas y
+            transformar momentos en experiencias digitales únicas.
+          </p>
+          <div class="actions">
+            <a href="#portafolio" class="btn primary">Ver trabajos</a>
+            <a href="#servicios" class="btn outline">Servicios</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARRUSEL DESTACADO -->
+      <section class="container" aria-label="Galería destacada" data-reveal>
+        <div class="carousel" id="carousel">
+          <div class="carousel__track" id="carouselTrack">
+            <div class="carousel__slide">
+              <img
+                src="assets/showcase/slide-1.jpg"
+                alt="Invitación digital animada"
+                loading="lazy"
+              />
+            </div>
+            <div class="carousel__slide">
+              <img
+                src="assets/showcase/slide-2.jpg"
+                alt="Diseño gráfico para evento"
+                loading="lazy"
+              />
+            </div>
+            <div class="carousel__slide">
+              <img
+                src="assets/showcase/slide-3.jpg"
+                alt="Fotografía de producto"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <button
+            class="carousel__btn prev"
+            id="prevBtn"
+            aria-label="Anterior"
+            title="Anterior"
+          >
+            &#10094;
+          </button>
+          <button
+            class="carousel__btn next"
+            id="nextBtn"
+            aria-label="Siguiente"
+            title="Siguiente"
+          >
+            &#10095;
+          </button>
+          <div
+            class="carousel__dots"
+            id="carouselDots"
+            aria-label="Indicadores"
+          ></div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section
+        class="about"
+        id="sobre-mi"
+        aria-label="Sobre Camacho Digital Studio"
+      >
+        <div class="container grid" data-reveal>
+          <div class="card">
+            <h2 class="section-title">Creatividad con propósito</h2>
+            <p class="muted">
+              Cada proyecto es una oportunidad para contar una historia.
+              Trabajamos contigo para crear piezas visuales que conecten y
+              sorprendan.
+            </p>
+            <p>
+              Combinamos diseño, fotografía y tecnología para experiencias
+              memorables: desde una invitación interactiva hasta un sitio web
+              completo.
+            </p>
+          </div>
+          <div class="card">
+            <img
+              src="assets/about/studio-1.jpg"
+              alt="Nuestro estudio y equipo en acción"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="services" id="servicios" aria-label="Servicios">
+        <div class="container" data-reveal>
+          <h2 class="section-title">Servicios</h2>
+          <p class="muted">Soluciones a medida para tus ideas.</p>
+          <div class="grid" style="margin-top: 1rem">
+            <article class="service-card">
+              <img src="assets/icons/invitacion.svg" alt="Icono invitaciones" />
+              <h3>Invitaciones digitales interactivas</h3>
+              <p class="muted">
+                Animaciones, música y participación del invitado. Todo en un
+                link.
+              </p>
+            </article>
+            <article class="service-card">
+              <img src="assets/icons/diseno.svg" alt="Icono diseño gráfico" />
+              <h3>Diseño gráfico</h3>
+              <p class="muted">
+                Identidad visual, flyers, banners y piezas para redes.
+              </p>
+            </article>
+            <article class="service-card">
+              <img src="assets/icons/foto.svg" alt="Icono fotografía" />
+              <h3>Fotografía</h3>
+              <p class="muted">Productos, retratos y cobertura de eventos.</p>
+            </article>
+            <article class="service-card">
+              <img src="assets/icons/web.svg" alt="Icono web" />
+              <h3>Soluciones web</h3>
+              <p class="muted">
+                Landing pages, sitios corporativos y microinteracciones.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO -->
+      <section class="portfolio" id="portafolio" aria-label="Portafolio">
+        <div class="container" data-reveal>
+          <h2 class="section-title">Portafolio</h2>
+          <p class="muted">Una selección de trabajos recientes.</p>
+          <div class="grid" style="margin-top: 1rem">
+            <a class="item" href="#" aria-label="Proyecto 1"
+              ><img
+                src="assets/portfolio/01.jpg"
+                alt="Proyecto 1"
+                loading="lazy"
+            /></a>
+            <a class="item" href="#" aria-label="Proyecto 2"
+              ><img
+                src="assets/portfolio/02.jpg"
+                alt="Proyecto 2"
+                loading="lazy"
+            /></a>
+            <a class="item" href="#" aria-label="Proyecto 3"
+              ><img
+                src="assets/portfolio/03.jpg"
+                alt="Proyecto 3"
+                loading="lazy"
+            /></a>
+            <a class="item" href="#" aria-label="Proyecto 4"
+              ><img
+                src="assets/portfolio/04.jpg"
+                alt="Proyecto 4"
+                loading="lazy"
+            /></a>
+            <a class="item" href="#" aria-label="Proyecto 5"
+              ><img
+                src="assets/portfolio/05.jpg"
+                alt="Proyecto 5"
+                loading="lazy"
+            /></a>
+            <a class="item" href="#" aria-label="Proyecto 6"
+              ><img
+                src="assets/portfolio/06.jpg"
+                alt="Proyecto 6"
+                loading="lazy"
+            /></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIOS -->
+      <section class="testimonials" id="testimonios" aria-label="Testimonios">
+        <div class="container" data-reveal>
+          <h2 class="section-title">Lo que dicen</h2>
+          <div class="grid" style="margin-top: 1rem">
+            <blockquote class="quote">
+              “Súper profesionales. Nuestra invitación digital fue un éxito y
+              muy fácil de compartir.” — <strong>Ana</strong>
+            </blockquote>
+            <blockquote class="quote">
+              “Fotos impecables y diseño con mucha personalidad. 100%
+              recomendado.” — <strong>Carlos</strong>
+            </blockquote>
+            <blockquote class="quote">
+              “Entendieron perfecto la idea y la llevaron a otro nivel.” —
+              <strong>Valeria</strong>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section class="contact" id="contacto" aria-label="Contacto">
+        <div class="container grid" data-reveal>
+          <div>
+            <h2 class="section-title">Hablemos</h2>
+            <p class="muted">
+              Cuéntame tu idea y armamos una propuesta a medida.
+            </p>
+            <ul class="muted">
+              <li>
+                Email:
+                <a href="mailto:hola@camachodigital.studio"
+                  >hola@camachodigital.studio</a
+                >
+              </li>
+              <li>WhatsApp: <a href="#">+00 000 0000</a></li>
+              <li>Instagram: <a href="#">@camachodigitalstudio</a></li>
+            </ul>
+          </div>
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="field">
+              <label for="name">Nombre</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Tu nombre"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="tucorreo@email.com"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="message">Mensaje</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Cuéntame sobre tu proyecto"
+                required
+              ></textarea>
+            </div>
+            <button class="btn primary" type="submit">Enviar</button>
+            <p class="muted" id="formMsg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="#inicio" class="btn outline" aria-label="Volver arriba"
+        >Arriba ↑</a
+      >
+      <div
+        class="container"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1rem;
+          flex-wrap: wrap;
+        "
+      >
+        <span
+          >© <span id="year"></span> Camacho Digital Studio. Todos los derechos
+          reservados.</span
+        >
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="main.js" defer></script>
+  </body>
+</html>
