@@ -157,7 +157,7 @@ img {
 /* ==================== HERO ==================== */
 .hero {
   min-height: 100vh;
-  background: url("../assets/hero/hero-1.jpg") center/cover no-repeat;
+  background: url("./assets/hero/hero-background.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -245,6 +245,9 @@ section {
 .section-title {
   font-size: 2rem;
   margin-bottom: 0.5rem;
+  text-align: center;
+}
+.section-h3 {
   text-align: center;
 }
 
@@ -340,12 +343,106 @@ section {
   .primary-nav {
     display: none;
   }
+  /* Hamburguesa */
   .hamburger {
     display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
   }
+
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--clr-white);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* Panel móvil tipo sidebar */
+  .mobile-panel {
+    display: none;
+    flex-direction: column;
+    position: fixed; /* fijo sobre la pantalla */
+    top: 70px; /* debajo del header */
+    right: 0; /* pegado al borde derecho */
+    width: 180px; /* más estrecho */
+    background: var(--clr-bg-alt);
+    padding: 1rem;
+    border-radius: 12px 0 0 12px; /* solo esquinas izquierdas redondeadas */
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.25);
+    z-index: 999;
+    transform: translateX(100%); /* fuera de pantalla por defecto */
+    opacity: 0;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    align-items: center;
+  }
+
   .mobile-panel.active {
     display: flex;
+    transform: translateX(0); /* entra deslizándose */
+    opacity: 1;
   }
+
+  .mobile-panel nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  .mobile-panel nav a {
+    color: var(--clr-white);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s;
+    text-align: center;
+    width: 100%;
+  }
+
+  .mobile-panel nav a:hover {
+    color: var(--clr-accent);
+  }
+
+  /* ==================== Hamburguesa Animada ==================== */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--clr-white);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* Estado activo → convierte en "X" */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
   .hero h1 {
     font-size: 2rem;
   }

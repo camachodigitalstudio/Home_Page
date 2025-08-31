@@ -6,9 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuBtn = document.getElementById("menuBtn");
   const mobilePanel = document.getElementById("mobilePanel");
   menuBtn.addEventListener("click", () => {
-    const expanded = menuBtn.getAttribute("aria-expanded") === "true";
-    menuBtn.setAttribute("aria-expanded", !expanded);
     mobilePanel.classList.toggle("active");
+    menuBtn.classList.toggle("active"); // 👈 activa la animación de la hamburguesa
   });
 
   // Animaciones de aparición (scroll reveal)

@@ -18,7 +18,7 @@
       property="og:description"
       content="Invitaciones digitales interactivas, diseño gráfico, fotografía y soluciones web."
     />
-    <meta property="og:image" content="assets/og-cover.jpg" />
+    <meta property="og:image" content="./assets/img/og-cover.webp" />
     <link rel="icon" href="assets/favicon.svg" />
 
     <!-- Estilos -->
@@ -35,35 +35,35 @@
         >
           <img
             class="site-logo"
-            src="assets/logo-banner.svg"
+            src="./assets/svg/logo-banner2.svg"
             alt="Camacho Digital Studio"
           />
-          <span class="brand-name">Camacho Digital Studio</span>
         </a>
         <nav class="primary-nav" aria-label="Navegación principal">
+          <a href="#inicio">Inicio</a>
           <a href="#servicios">Servicios</a>
           <a href="#portafolio">Portafolio</a>
           <a href="#testimonios">Testimonios</a>
           <a href="#contacto">Contacto</a>
-          <a class="btn outline" href="#contacto">Pedir cotización</a>
         </nav>
         <button
           class="hamburger"
           id="menuBtn"
-          aria-controls="mobilePanel"
+          aria-label="Menú"
           aria-expanded="false"
-          aria-label="Abrir menú"
         >
+          <span></span>
+          <span></span>
           <span></span>
         </button>
       </div>
       <div class="mobile-panel" id="mobilePanel">
         <nav aria-label="Navegación móvil">
+          <a href="#inicio">Inicio</a>
           <a href="#servicios">Servicios</a>
           <a href="#portafolio">Portafolio</a>
           <a href="#testimonios">Testimonios</a>
           <a href="#contacto">Contacto</a>
-          <a class="btn primary" href="#contacto">Pedir cotización</a>
         </nav>
       </div>
     </header>
@@ -95,21 +95,21 @@
           <div class="carousel__track" id="carouselTrack">
             <div class="carousel__slide">
               <img
-                src="assets/showcase/slide-1.jpg"
+                src="./assets/carrusel/carrusel.webp"
                 alt="Invitación digital animada"
                 loading="lazy"
               />
             </div>
             <div class="carousel__slide">
               <img
-                src="assets/showcase/slide-2.jpg"
+                src="./assets/carrusel/carrusel.webp"
                 alt="Diseño gráfico para evento"
                 loading="lazy"
               />
             </div>
             <div class="carousel__slide">
               <img
-                src="assets/showcase/slide-3.jpg"
+                src="./assets/carrusel/carrusel.webp"
                 alt="Fotografía de producto"
                 loading="lazy"
               />
@@ -161,7 +161,7 @@
           </div>
           <div class="card">
             <img
-              src="assets/about/studio-1.jpg"
+              src="./assets/about/about.webp"
               alt="Nuestro estudio y equipo en acción"
               loading="lazy"
             />
@@ -176,28 +176,34 @@
           <p class="muted">Soluciones a medida para tus ideas.</p>
           <div class="grid" style="margin-top: 1rem">
             <article class="service-card">
-              <img src="assets/icons/invitacion.svg" alt="Icono invitaciones" />
-              <h3>Invitaciones digitales interactivas</h3>
+              <img
+                src="./assets/icons/icono-invitaciones_Mesa de trabajo 1.svg"
+                alt="Icono invitaciones"
+              />
+              <h3 class="section-h3">Invitaciones digitales interactivas</h3>
               <p class="muted">
                 Animaciones, música y participación del invitado. Todo en un
                 link.
               </p>
             </article>
             <article class="service-card">
-              <img src="assets/icons/diseno.svg" alt="Icono diseño gráfico" />
-              <h3>Diseño gráfico</h3>
+              <img
+                src="./assets/icons/icono_diseno-grafico_Mesa de trabajo 1 copia.svg"
+                alt="Icono diseño gráfico"
+              />
+              <h3 class="section-h3">Diseño gráfico</h3>
               <p class="muted">
                 Identidad visual, flyers, banners y piezas para redes.
               </p>
             </article>
             <article class="service-card">
-              <img src="assets/icons/foto.svg" alt="Icono fotografía" />
-              <h3>Fotografía</h3>
+              <img src="./assets/icons/icono.svg" alt="Icono fotografía" />
+              <h3 class="section-h3">Fotografía</h3>
               <p class="muted">Productos, retratos y cobertura de eventos.</p>
             </article>
             <article class="service-card">
-              <img src="assets/icons/web.svg" alt="Icono web" />
-              <h3>Soluciones web</h3>
+              <img src="./assets/icons/icono.svg" alt="Icono web" />
+              <h3 class="section-h3">Soluciones web</h3>
               <p class="muted">
                 Landing pages, sitios corporativos y microinteracciones.
               </p>
@@ -214,38 +220,14 @@
           <div class="grid" style="margin-top: 1rem">
             <a class="item" href="#" aria-label="Proyecto 1"
               ><img
-                src="assets/portfolio/01.jpg"
+                src="./assets/portfolio/portafolio.webp"
                 alt="Proyecto 1"
                 loading="lazy"
             /></a>
             <a class="item" href="#" aria-label="Proyecto 2"
               ><img
-                src="assets/portfolio/02.jpg"
+                src="./assets/portfolio/portafolio.webp"
                 alt="Proyecto 2"
-                loading="lazy"
-            /></a>
-            <a class="item" href="#" aria-label="Proyecto 3"
-              ><img
-                src="assets/portfolio/03.jpg"
-                alt="Proyecto 3"
-                loading="lazy"
-            /></a>
-            <a class="item" href="#" aria-label="Proyecto 4"
-              ><img
-                src="assets/portfolio/04.jpg"
-                alt="Proyecto 4"
-                loading="lazy"
-            /></a>
-            <a class="item" href="#" aria-label="Proyecto 5"
-              ><img
-                src="assets/portfolio/05.jpg"
-                alt="Proyecto 5"
-                loading="lazy"
-            /></a>
-            <a class="item" href="#" aria-label="Proyecto 6"
-              ><img
-                src="assets/portfolio/06.jpg"
-                alt="Proyecto 6"
                 loading="lazy"
             /></a>
           </div>
@@ -263,7 +245,7 @@
             </blockquote>
             <blockquote class="quote">
               “Fotos impecables y diseño con mucha personalidad. 100%
-              recomendado.” — <strong>Carlos</strong>
+              recomendado.” — <strong>Daniel</strong>
             </blockquote>
             <blockquote class="quote">
               “Entendieron perfecto la idea y la llevaron a otro nivel.” —
