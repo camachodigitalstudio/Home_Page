@@ -81,13 +81,74 @@ document.addEventListener("DOMContentLoaded", () => {
     if (endX - startX > 50) prevBtn.click();
   });
 
-  // Formulario (validación simple)
+  // ==================== FORMULARIO DE CONTACTO ====================
   const form = document.getElementById("contactForm");
+  const nameField = document.getElementById("name");
+  const emailField = document.getElementById("email");
+  const messageField = document.getElementById("message");
   const formMsg = document.getElementById("formMsg");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    formMsg.textContent = "¡Gracias! Tu mensaje ha sido enviado.";
-    form.reset();
+    let valid = true;
+
+    // Reset errores
+    document
+      .querySelectorAll(".error-msg")
+      .forEach((el) => (el.textContent = ""));
+
+    // Validar nombre
+    const namePattern = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+    if (!namePattern.test(nameField.value.trim())) {
+      showError(nameField, "El nombre solo debe contener letras.");
+      valid = false;
+    }
+
+    // Validar email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailField.value.trim())) {
+      showError(emailField, "Ingresa un correo electrónico válido.");
+      valid = false;
+    }
+
+    // Validar mensaje
+    if (messageField.value.trim().length < 5) {
+      showError(messageField, "El mensaje es demasiado corto.");
+      valid = false;
+    }
+
+    if (!valid) return; // ❌ No enviamos si hay errores
+
+    // ✅ Si todo está bien, enviamos con fetch a Formspree
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+    })
+      .then((response) => {
+        if (response.ok) {
+          formMsg.textContent = "¡Gracias! Tu mensaje ha sido enviado ✅";
+          formMsg.style.color = "#ffffffff";
+          form.reset();
+        } else {
+          formMsg.textContent =
+            "❌ Hubo un error al enviar el mensaje. Intenta de nuevo.";
+          formMsg.style.color = "#ff4d4d";
+        }
+      })
+      .catch(() => {
+        formMsg.textContent =
+          "❌ Error de red. Revisa tu conexión e intenta nuevamente.";
+        formMsg.style.color = "#ff4d4d";
+      });
   });
+
+  function showError(input, message) {
+    const errorMsg = input.parentElement.querySelector(".error-msg");
+    if (errorMsg) {
+      errorMsg.textContent = message;
+      errorMsg.style.color = "#ff4d4d";
+      errorMsg.style.fontSize = "0.85rem";
+    }
+  }
 });

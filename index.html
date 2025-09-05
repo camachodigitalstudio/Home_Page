@@ -19,7 +19,24 @@
       content="Invitaciones digitales interactivas, diseño gráfico, fotografía y soluciones web."
     />
     <meta property="og:image" content="./assets/img/og-cover.webp" />
-    <link rel="icon" href="assets/favicon.svg" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./assets/favicon_io/site.webmanifest" />
 
     <!-- Estilos -->
     <link rel="stylesheet" href="styles.css" />
@@ -27,7 +44,7 @@
   <body>
     <!-- ===================== HEADER ===================== -->
     <header class="site-header" id="top">
-      <div class="container nav-wrap">
+      <div class="nav-wrap">
         <a
           href="#inicio"
           class="brand"
@@ -95,21 +112,21 @@
           <div class="carousel__track" id="carouselTrack">
             <div class="carousel__slide">
               <img
-                src="./assets/carrusel/carrusel.webp"
+                src="./assets/carrusel/carrusel1-2.webp"
                 alt="Invitación digital animada"
                 loading="lazy"
               />
             </div>
             <div class="carousel__slide">
               <img
-                src="./assets/carrusel/carrusel.webp"
+                src="./assets/carrusel/carrusel2.webp"
                 alt="Diseño gráfico para evento"
                 loading="lazy"
               />
             </div>
             <div class="carousel__slide">
               <img
-                src="./assets/carrusel/carrusel.webp"
+                src="./assets/carrusel/carrusel3.webp"
                 alt="Fotografía de producto"
                 loading="lazy"
               />
@@ -153,7 +170,7 @@
               Trabajamos contigo para crear piezas visuales que conecten y
               sorprendan.
             </p>
-            <p>
+            <p class="mutedp">
               Combinamos diseño, fotografía y tecnología para experiencias
               memorables: desde una invitación interactiva hasta un sitio web
               completo.
@@ -197,12 +214,10 @@
               </p>
             </article>
             <article class="service-card">
-              <img src="./assets/icons/icono.svg" alt="Icono fotografía" />
-              <h3 class="section-h3">Fotografía</h3>
-              <p class="muted">Productos, retratos y cobertura de eventos.</p>
-            </article>
-            <article class="service-card">
-              <img src="./assets/icons/icono.svg" alt="Icono web" />
+              <img
+                src="./assets/icons/icono-web-03_Mesa de trabajo 1_Mesa de trabajo 1_Mesa de trabajo 1.svg"
+                alt="Icono web"
+              />
               <h3 class="section-h3">Soluciones web</h3>
               <p class="muted">
                 Landing pages, sitios corporativos y microinteracciones.
@@ -226,7 +241,7 @@
             /></a>
             <a class="item" href="#" aria-label="Proyecto 2"
               ><img
-                src="./assets/portfolio/portafolio.webp"
+                src="./assets/portfolio/portafolio2.webp"
                 alt="Proyecto 2"
                 loading="lazy"
             /></a>
@@ -256,57 +271,88 @@
       </section>
 
       <!-- CONTACTO -->
+      <!-- CONTACTO -->
       <section class="contact" id="contacto" aria-label="Contacto">
         <div class="container grid" data-reveal>
           <div>
             <h2 class="section-title">Hablemos</h2>
-            <p class="muted">
+            <p class="muted2">
               Cuéntame tu idea y armamos una propuesta a medida.
             </p>
-            <ul class="muted">
+            <ul class="muted2">
               <li>
+                <i class="fa-solid fa-envelope"></i>
                 Email:
-                <a href="mailto:hola@camachodigital.studio"
-                  >hola@camachodigital.studio</a
-                >
+                <a href="mailto:camachodigitalstudio@gmail.com">
+                  camachodigitalstudio@gmail.com
+                </a>
               </li>
-              <li>WhatsApp: <a href="#">+00 000 0000</a></li>
-              <li>Instagram: <a href="#">@camachodigitalstudio</a></li>
+              <li>
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp:
+                <a href="https://wa.me/56966411859" target="_blank">
+                  +56 9 6641 1859
+                </a>
+                <!-- Si prefieres llamada directa: <a href="tel:+56912345678">+56 9 1234 5678</a> -->
+              </li>
             </ul>
           </div>
-          <form class="contact-form" id="contactForm" novalidate>
-            <div class="field">
-              <label for="name">Nombre</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Tu nombre"
-                required
-              />
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="tucorreo@email.com"
-                required
-              />
-            </div>
-            <div class="field">
-              <label for="message">Mensaje</label>
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Cuéntame sobre tu proyecto"
-                required
-              ></textarea>
-            </div>
-            <button class="btn primary" type="submit">Enviar</button>
-            <p class="muted" id="formMsg" role="status" aria-live="polite"></p>
-          </form>
+
+          <div>
+            <form
+              id="contactForm"
+              class="contact-form"
+              action="https://formspree.io/f/xnnboeqn"
+              method="POST"
+              novalidate
+            >
+              <!-- Nombre -->
+              <div class="field">
+                <label for="name">Nombre</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Tu nombre"
+                  pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$"
+                  required
+                />
+                <small class="error-msg"></small>
+              </div>
+
+              <!-- Email -->
+              <div class="field">
+                <label for="email">Correo electrónico</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="tucorreo@ejemplo.com"
+                  required
+                />
+                <small class="error-msg"></small>
+              </div>
+
+              <!-- Mensaje -->
+              <div class="field">
+                <label for="message">Mensaje</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  placeholder="Escribe tu mensaje aquí..."
+                  required
+                ></textarea>
+                <small class="error-msg"></small>
+              </div>
+
+              <!-- Botón -->
+              <button type="submit" class="btn primary">Enviar</button>
+            </form>
+
+            <!-- 👇 MENSAJE GLOBAL -->
+            <div id="formMsg" class="form-msg"></div>
+          </div>
         </div>
       </section>
     </main>
@@ -315,16 +361,7 @@
       <a href="#inicio" class="btn outline" aria-label="Volver arriba"
         >Arriba ↑</a
       >
-      <div
-        class="container"
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 1rem;
-          flex-wrap: wrap;
-        "
-      >
+      <div class="container">
         <span
           >© <span id="year"></span> Camacho Digital Studio. Todos los derechos
           reservados.</span

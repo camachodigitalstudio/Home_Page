@@ -12,7 +12,9 @@
   --ff-heading: "Poppins", sans-serif;
   --max-width: 1200px;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 /* ==================== Reset ==================== */
 *,
 *::before,
@@ -58,6 +60,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 2rem;
 }
 
 .brand {
@@ -70,7 +73,7 @@ img {
 }
 
 .site-logo {
-  height: 40px;
+  height: 60px;
 }
 
 .primary-nav {
@@ -157,7 +160,7 @@ img {
 /* ==================== HERO ==================== */
 .hero {
   min-height: 100vh;
-  background: url("./assets/hero/hero-background.jpg") center/cover no-repeat;
+  background: url("./assets/hero/hero.webp") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -255,7 +258,14 @@ section {
   color: var(--clr-muted);
   text-align: center;
 }
-
+.mutedp {
+  text-align: center;
+}
+.muted2 {
+  color: var(--clr-muted);
+  text-align: left;
+  margin: 0 10%;
+}
 /* Grid */
 .grid {
   display: grid;
@@ -302,6 +312,38 @@ section {
   font-weight: 600;
   margin-bottom: 0.3rem;
 }
+/* ==================== Links de contacto ==================== */
+.contact-form a {
+  color: var(--clr-primary); /* mismo color que tu branding */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.contact-form a:hover {
+  color: var(--clr-primary-hover);
+  text-decoration: underline; /* opcional: solo subrayado al hover */
+}
+
+.contact-form a:visited {
+  color: var(--clr-primary); /* mantiene el mismo color si ya fue visitado */
+}
+/* ==================== Links de contacto ==================== */
+.contact a {
+  color: var(--clr-primary); /* usa tu color de marca */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.contact a:hover {
+  color: var(--clr-primary-hover);
+  text-decoration: underline; /* solo subrayado al hover */
+}
+
+.contact a:visited {
+  color: var(--clr-primary); /* mantiene el mismo color siempre */
+}
 
 .field input,
 .field textarea {
@@ -324,6 +366,13 @@ section {
   padding: 1.5rem 0;
   text-align: center;
   color: var(--clr-muted);
+}
+.site-footer .container {
+  display: flex;
+  justify-content: center; /* centrado horizontal */
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 /* ==================== Animaciones ==================== */
