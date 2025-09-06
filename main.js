@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Swipe para móviles
+  // Swipe para móviles
   let startX = 0;
   let deltaX = 0;
   let isSwiping = false;
@@ -99,6 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
     (e) => {
       startX = e.touches[0].clientX;
       isSwiping = true;
+      deltaX = 0;
+
+      // ⚡ quitamos la transición mientras el usuario arrastra
+      track.style.transition = "none";
     },
     { passive: true }
   );
@@ -109,10 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isSwiping) return;
       deltaX = e.touches[0].clientX - startX;
 
-      // 👇 evita que Safari intente hacer scroll en vertical
-      if (Math.abs(deltaX) > 10) {
-        e.preventDefault();
-      }
+      // Evitar scroll vertical si hay arrastre horizontal
+      if (Math.abs(deltaX) > 10) e.preventDefault();
+
+      // 👇 mover el track en tiempo real (posición actual + desplazamiento)
+      const offset = -currentIndex * 100 + (deltaX / track.offsetWidth) * 100;
+      track.style.transform = `translateX(${offset}%)`;
     },
     { passive: false }
   );
@@ -120,20 +127,23 @@ document.addEventListener("DOMContentLoaded", () => {
   track.addEventListener("touchend", () => {
     if (!isSwiping) return;
 
+    // Restaurar transición para el snap
+    track.style.transition = "transform 0.5s ease";
+
     if (Math.abs(deltaX) > 50) {
       if (deltaX < 0) {
         currentIndex = (currentIndex + 1) % slides.length;
       } else {
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
       }
-      updateCarousel();
-      restartAutoplay(); // 👈 Pausa y reinicia autoplay después del swipe
     }
 
+    updateCarousel();
+    restartAutoplay();
+
     // reset
-    startX = 0;
-    deltaX = 0;
     isSwiping = false;
+    deltaX = 0;
   });
 
   // ==================== FORMULARIO DE CONTACTO ====================
