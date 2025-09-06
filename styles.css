@@ -603,3 +603,8 @@ section {
 .fab-option:hover {
   transform: scale(1.1);
 }
+.fab-option img,
+.fab-option svg {
+  width: 45px;
+  height: 45px;
+}

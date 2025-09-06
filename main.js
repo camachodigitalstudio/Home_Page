@@ -197,7 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroEl = document.querySelector(".hero");
   const images = [
     "./assets/hero/hero.webp",
-    "./assets/hero/hero-background.jpg",
+    "./assets/hero/hero2.webp",
+    "./assets/hero/hero3.webp",
   ];
   let current = 0;
 
