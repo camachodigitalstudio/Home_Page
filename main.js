@@ -72,20 +72,46 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCarousel();
   }, 5000);
 
+  // Bloquear clic derecho en toda la página
+  document.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+  });
+  // Evitar arrastrar imágenes
+  document.addEventListener("dragstart", (e) => {
+    if (e.target.tagName === "IMG") {
+      e.preventDefault();
+    }
+  });
+
   // Swipe para móviles
-  // Swipe para móviles (compatible iPhone/Android)
   let startX = 0;
   let moveX = 0;
+  let isSwiping = false;
 
-  track.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
+  track.addEventListener(
+    "touchstart",
+    (e) => {
+      startX = e.touches[0].clientX;
+      isSwiping = true;
+    },
+    { passive: true }
+  );
 
-  track.addEventListener("touchmove", (e) => {
-    moveX = e.touches[0].clientX - startX;
-  });
+  track.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!isSwiping) return;
+      moveX = e.touches[0].clientX - startX;
+
+      // Evita que Safari intente hacer scroll en vertical
+      e.preventDefault();
+    },
+    { passive: false }
+  ); // 👈 esto es CLAVE en iOS
 
   track.addEventListener("touchend", () => {
+    if (!isSwiping) return;
+
     if (Math.abs(moveX) > 50) {
       if (moveX < 0) {
         // Deslizó a la izquierda → siguiente
@@ -95,9 +121,11 @@ document.addEventListener("DOMContentLoaded", () => {
         prevBtn.click();
       }
     }
+
     // reset
     startX = 0;
     moveX = 0;
+    isSwiping = false;
   });
 
   // ==================== FORMULARIO DE CONTACTO ====================

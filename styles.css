@@ -43,6 +43,18 @@ img {
   max-width: 100%;
   display: block;
 }
+img,
+body {
+  -webkit-user-drag: none; /* Safari/Chrome */
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 /* ==================== HEADER ==================== */
 .site-header {
@@ -206,6 +218,8 @@ img {
 .carousel__track {
   display: flex;
   transition: transform 0.5s ease;
+  touch-action: pan-y; /* Permite scroll vertical, pero bloquea horizontal */
+  -webkit-overflow-scrolling: touch; /* Mejora la respuesta en iOS */
 }
 
 .carousel__slide {
