@@ -27,57 +27,70 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelectorAll("[data-reveal]")
     .forEach((el) => observer.observe(el));
 
-  // Carousel
+  // ==================== Carousel ====================
   const track = document.getElementById("carouselTrack");
   const slides = Array.from(track.children);
-  const nextBtn = document.getElementById("nextBtn");
   const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
   const dotsNav = document.getElementById("carouselDots");
+  const carouselContainer = document.getElementById("carousel");
 
   let currentIndex = 0;
+  let autoplayInterval;
 
-  // Crear dots
-  slides.forEach((_, i) => {
-    const dot = document.createElement("button");
-    if (i === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => goToSlide(i));
-    dotsNav.appendChild(dot);
+  // Crear los dots
+  slides.forEach((_, index) => {
+    const button = document.createElement("button");
+    if (index === 0) button.classList.add("active");
+    dotsNav.appendChild(button);
   });
 
+  const dots = Array.from(dotsNav.children);
+
+  // Actualizar carrusel
   function updateCarousel() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-    dotsNav
-      .querySelectorAll("button")
-      .forEach((btn, i) => btn.classList.toggle("active", i === currentIndex));
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentIndex);
+    });
   }
 
-  function goToSlide(index) {
-    currentIndex = index;
-    updateCarousel();
+  // Autoplay
+  function startAutoplay() {
+    autoplayInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    }, 4000);
   }
 
+  function restartAutoplay() {
+    clearInterval(autoplayInterval);
+    startAutoplay();
+  }
+
+  // Botones
   nextBtn.addEventListener("click", () => {
     currentIndex = (currentIndex + 1) % slides.length;
     updateCarousel();
+    restartAutoplay();
   });
 
   prevBtn.addEventListener("click", () => {
     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
     updateCarousel();
+    restartAutoplay();
   });
 
-  // Autoplay (guardamos el intervalo en una variable)
-  let autoplay = setInterval(() => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateCarousel();
-  }, 5000);
-  function restartAutoplay() {
-    clearInterval(autoplay);
-    autoplay = setInterval(() => {
-      currentIndex = (currentIndex + 1) % slides.length;
+  // Dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      currentIndex = index;
       updateCarousel();
-    }, 5000);
-  }
+      restartAutoplay();
+    });
+  });
   // Bloquear clic derecho en toda la página
   document.addEventListener("contextmenu", (e) => {
     e.preventDefault();
@@ -90,62 +103,55 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Swipe para móviles
-  // Swipe para móviles
+  // Swipe para móviles (compatible con iOS y Android)
   let startX = 0;
-  let deltaX = 0;
-  let isSwiping = false;
+  let startY = 0;
+  let moveX = 0;
 
-  track.addEventListener(
+  carouselContainer.addEventListener(
     "touchstart",
     (e) => {
       startX = e.touches[0].clientX;
-      isSwiping = true;
-      deltaX = 0;
-
-      // ⚡ quitamos la transición mientras el usuario arrastra
-      track.style.transition = "none";
+      startY = e.touches[0].clientY;
+      moveX = startX;
     },
     { passive: true }
   );
 
-  track.addEventListener(
+  carouselContainer.addEventListener(
     "touchmove",
     (e) => {
-      if (!isSwiping) return;
-      deltaX = e.touches[0].clientX - startX;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
 
-      // Evitar scroll vertical si hay arrastre horizontal
-      if (Math.abs(deltaX) > 10) e.preventDefault();
-
-      // 👇 mover el track en tiempo real (posición actual + desplazamiento)
-      const offset = -currentIndex * 100 + (deltaX / track.offsetWidth) * 100;
-      track.style.transform = `translateX(${offset}%)`;
+      // Solo bloquear el scroll si el gesto es horizontal
+      if (Math.abs(dx) > Math.abs(dy)) {
+        e.preventDefault();
+        moveX = e.touches[0].clientX;
+      }
     },
     { passive: false }
   );
 
-  track.addEventListener("touchend", () => {
-    if (!isSwiping) return;
+  carouselContainer.addEventListener("touchend", () => {
+    const swipeDistance = moveX - startX;
 
-    // Restaurar transición para el snap
-    track.style.transition = "transform 0.5s ease";
-
-    if (Math.abs(deltaX) > 50) {
-      if (deltaX < 0) {
-        currentIndex = (currentIndex + 1) % slides.length;
-      } else {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      }
+    if (swipeDistance > 50) {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
+      restartAutoplay();
+    } else if (swipeDistance < -50) {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+      restartAutoplay();
     }
-
-    updateCarousel();
-    restartAutoplay();
-
-    // reset
-    isSwiping = false;
-    deltaX = 0;
   });
 
+  // Iniciar autoplay
+  startAutoplay();
+
+  // Ajustar cuando cambie el tamaño de la ventana
+  window.addEventListener("resize", updateCarousel);
   // ==================== FORMULARIO DE CONTACTO ====================
   const form = document.getElementById("contactForm");
   const nameField = document.getElementById("name");
