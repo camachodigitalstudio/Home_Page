@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Swipe para móviles
   let startX = 0;
-  let moveX = 0;
+  let deltaX = 0;
   let isSwiping = false;
 
   track.addEventListener(
@@ -101,30 +101,33 @@ document.addEventListener("DOMContentLoaded", () => {
     "touchmove",
     (e) => {
       if (!isSwiping) return;
-      moveX = e.touches[0].clientX - startX;
+      deltaX = e.touches[0].clientX - startX;
 
-      // Evita que Safari intente hacer scroll en vertical
-      e.preventDefault();
+      // 👇 evita que Safari intente hacer scroll en vertical
+      if (Math.abs(deltaX) > 10) {
+        e.preventDefault();
+      }
     },
     { passive: false }
-  ); // 👈 esto es CLAVE en iOS
+  );
 
   track.addEventListener("touchend", () => {
     if (!isSwiping) return;
 
-    if (Math.abs(moveX) > 50) {
-      if (moveX < 0) {
-        // Deslizó a la izquierda → siguiente
-        nextBtn.click();
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX < 0) {
+        // 👉 siguiente
+        currentIndex = (currentIndex + 1) % slides.length;
       } else {
-        // Deslizó a la derecha → anterior
-        prevBtn.click();
+        // 👈 anterior
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
       }
+      updateCarousel();
     }
 
     // reset
     startX = 0;
-    moveX = 0;
+    deltaX = 0;
     isSwiping = false;
   });
 
