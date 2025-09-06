@@ -159,13 +159,24 @@ img {
 
 /* ==================== HERO ==================== */
 .hero {
+  position: relative;
   min-height: 100vh;
-  background: url("./assets/hero/hero.webp") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 2rem;
+  overflow: hidden; /* evita scroll por capas */
+}
+
+.hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1s ease-in-out;
+  z-index: -1; /* queda detrás del texto */
 }
 
 .hero h1 {
@@ -495,4 +506,100 @@ section {
   .hero h1 {
     font-size: 2rem;
   }
+}
+.testimonials {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: #007bff; /* fondo suave */
+  color: #ffffff;
+}
+
+.testimonials-wrapper {
+  position: relative;
+  max-width: 700px;
+  margin: 2rem auto 0;
+  min-height: 120px; /* evita saltos de altura */
+}
+
+.quote {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.quote.active {
+  opacity: 1;
+  transform: translateY(0);
+  position: relative;
+}
+/* Contenedor del FAB */
+.contact-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+}
+
+/* Botón principal */
+.fab-main {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: #0077ff;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.fab-main.active {
+  transform: rotate(45deg); /* giro al abrir */
+}
+
+/* Opciones ocultas por defecto */
+.fab-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: absolute;
+  bottom: 70px; /* debajo del main */
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Cuando está activo */
+.fab-options.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Cada botón de red social */
+.fab-option {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.fab-option:hover {
+  transform: scale(1.1);
 }
