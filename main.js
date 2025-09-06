@@ -66,12 +66,18 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCarousel();
   });
 
-  // Autoplay
-  setInterval(() => {
+  // Autoplay (guardamos el intervalo en una variable)
+  let autoplay = setInterval(() => {
     currentIndex = (currentIndex + 1) % slides.length;
     updateCarousel();
   }, 5000);
-
+  function restartAutoplay() {
+    clearInterval(autoplay);
+    autoplay = setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    }, 5000);
+  }
   // Bloquear clic derecho en toda la página
   document.addEventListener("contextmenu", (e) => {
     e.preventDefault();
@@ -116,13 +122,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (Math.abs(deltaX) > 50) {
       if (deltaX < 0) {
-        // 👉 siguiente
         currentIndex = (currentIndex + 1) % slides.length;
       } else {
-        // 👈 anterior
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
       }
       updateCarousel();
+      restartAutoplay(); // 👈 Pausa y reinicia autoplay después del swipe
     }
 
     // reset
