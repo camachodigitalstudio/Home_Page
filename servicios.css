@@ -1,0 +1,100 @@
+/* ==================== Hero Servicio ==================== */
+/* HERO */
+.hero-servicio {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  background: var(--clr-bg-alt);
+  border-radius: 12px;
+  margin-top: 70px; /* separa del header fijo */
+}
+
+.hero-servicio .container {
+  max-width: 800px; /* centra el bloque */
+  margin: 0 auto;
+}
+
+.hero-servicio .icono-servicio {
+  display: block;
+  margin: 0 auto 2rem auto;
+  width: 100%; /* ocupa todo el ancho del contenedor */
+  max-width: 100%; /* quita el límite */
+  height: auto; /* mantiene proporción 16:9 */
+  border-radius: 12px; /* opcional */
+}
+/* ==================== Detalle ==================== */
+.detalle-servicio ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.detalle-servicio li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.detalle-servicio li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--clr-primary);
+}
+
+/* ==================== Precios ==================== */
+.pricing-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 2rem;
+}
+
+.price-card {
+  background: var(--clr-bg-alt);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-5px);
+}
+
+.price-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.price-card .price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--clr-primary);
+  margin-bottom: 0.5rem;
+}
+
+.price-card.destacado {
+  border: 2px solid var(--clr-primary);
+  background: rgba(0, 123, 255, 0.1);
+}
+
+/* ==================== CTA ==================== */
+.cta {
+  text-align: center;
+  padding: 3rem 0;
+}
+@media (min-width: 1024px) {
+  .hero-servicio {
+    min-height: 80vh; /* que la sección sea más alta */
+    padding: 6rem 2rem;
+  }
+
+  .hero-servicio .icono-servicio {
+    width: 100%; /* ocupa casi toda la pantalla */
+    max-width: 1600px; /* límite según tu imagen */
+  }
+}

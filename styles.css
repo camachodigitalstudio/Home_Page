@@ -85,7 +85,7 @@ body {
 }
 
 .site-logo {
-  height: 60px;
+  height: 40px;
 }
 
 .primary-nav {
@@ -207,6 +207,17 @@ body {
 .hero p {
   max-width: 700px;
   margin: 0 auto 1.5rem;
+}
+.hero-logo {
+  text-align: center;
+  margin: 1rem 0 2rem;
+}
+
+.hero-logo img {
+  max-width: 280px; /* tamaño máximo en desktop */
+  width: 100%; /* adaptable */
+  height: auto; /* mantiene proporción */
+  display: inline-block;
 }
 
 /* ==================== Carousel ==================== */
@@ -426,7 +437,9 @@ section {
     border: none;
     cursor: pointer;
   }
-
+  .hero-logo img {
+    max-width: 200px;
+  }
   .hamburger span {
     display: block;
     width: 25px;
@@ -621,4 +634,34 @@ section {
 .fab-option svg {
   width: 45px;
   height: 45px;
+}
+/* ==================== Servicios ==================== */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 12px;
+  background: var(--clr-bg-alt);
+  text-decoration: none; /* quita subrayado al contenedor */
+  color: inherit; /* hereda color de texto */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Quitamos el azul/lila y subrayado en h3 y párrafos */
+.service-card h3,
+.service-card p {
+  color: var(--clr-white); /* o tu color de texto principal */
+  text-decoration: none;
+}
+
+.service-card:visited h3,
+.service-card:visited p {
+  color: var(--clr-white); /* mantiene el mismo color al visitar */
 }

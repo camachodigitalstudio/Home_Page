@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitaciones Digitales Interactivas | Camacho Digital Studio</title>
+    <meta
+      name="description"
+      content="Invitaciones digitales interactivas, diseño gráfico, fotografía y soluciones web hechas con creatividad y pasión."
+    />
+    <meta name="theme-color" content="#0e0f12" />
+    <!-- Open Graph / Compartir -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Camacho Digital Studio" />
+    <meta
+      property="og:description"
+      content="Invitaciones digitales interactivas, diseño gráfico, fotografía y soluciones web."
+    />
+    <meta property="og:image" content="./assets/img/og-cover.webp" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./assets/favicon_io/site.webmanifest" />
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./servicios.css" />
+  </head>
+  <body>
+    <!-- HEADER (igual que el actual) -->
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header" id="top">
+      <div class="nav-wrap">
+        <a
+          href="./index.html"
+          class="brand"
+          aria-label="Camacho Digital Studio — Inicio"
+        >
+          <img
+            class="site-logo"
+            src="./assets/svg/logo-banner2.svg"
+            alt="Camacho Digital Studio"
+          />
+        </a>
+        <nav class="primary-nav" aria-label="Navegación principal">
+          <a href="./index.html#inicio">Inicio</a>
+          <a href="./index.html#servicios">Servicios</a>
+          <a href="./index.html#portafolio">Portafolio</a>
+          <a href="./index.html#testimonios">Testimonios</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+        <button
+          class="hamburger"
+          id="menuBtn"
+          aria-label="Menú"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="mobile-panel" id="mobilePanel">
+        <nav aria-label="Navegación móvil">
+          <a href="./index.html#inicio">Inicio</a>
+          <a href="./index.html#servicios">Servicios</a>
+          <a href="./index.html#portafolio">Portafolio</a>
+          <a href="./index.html#testimonios">Testimonios</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+    <div id="inicio"></div>
+    <!-- HERO -->
+    <section class="hero-servicio" data-reveal>
+      <div class="container">
+        <img
+          src="./assets/carrusel/carrusel1.webp"
+          alt="Icono invitaciones"
+          class="icono-servicio"
+        />
+        <h1>Invitaciones Digitales Interactivas</h1>
+        <p class="muted">
+          Animaciones, música, interacción y más. Una experiencia única en un
+          solo link.
+        </p>
+      </div>
+    </section>
+
+    <!-- DESCRIPCIÓN DETALLADA -->
+    <section class="detalle-servicio container" data-reveal>
+      <h2>¿Qué incluyen?</h2>
+      <ul>
+        <li>Diseño personalizado a la temática del evento</li>
+        <li>Animaciones y transiciones suaves</li>
+        <li>Integración de música de fondo</li>
+        <li>Mapa de ubicación y botón directo a WhatsApp</li>
+        <li>Confirmación de asistencia (RSVP)</li>
+      </ul>
+    </section>
+    <!-- ==================== Carrusel de Servicios ==================== -->
+    <!-- CARRUSEL DESTACADO -->
+    <section class="container" aria-label="Galería destacada" data-reveal>
+      <div class="carousel" id="carousel">
+        <div class="carousel__track" id="carouselTrack">
+          <div class="carousel__slide">
+            <img
+              src="./assets/carrusel/carrusel1-2.webp"
+              alt="Invitación digital animada"
+              loading="lazy"
+            />
+          </div>
+          <div class="carousel__slide">
+            <img
+              src="./assets/carrusel/carrusel2.webp"
+              alt="Diseño gráfico para evento"
+              loading="lazy"
+            />
+          </div>
+          <div class="carousel__slide">
+            <img
+              src="./assets/carrusel/carrusel3.webp"
+              alt="Fotografía de producto"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel__btn prev"
+          id="prevBtn"
+          aria-label="Anterior"
+          title="Anterior"
+        >
+          &#10094;
+        </button>
+        <button
+          class="carousel__btn next"
+          id="nextBtn"
+          aria-label="Siguiente"
+          title="Siguiente"
+        >
+          &#10095;
+        </button>
+        <div
+          class="carousel__dots"
+          id="carouselDots"
+          aria-label="Indicadores"
+        ></div>
+      </div>
+    </section>
+
+    <!-- PRECIOS -->
+    <section class="precios container" data-reveal>
+      <h2>Precios Orientativos</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>PDF Básico</h3>
+          <p class="price">$1000 CLP</p>
+          <p>Diseño simple, solo PDF sin botones.</p>
+        </div>
+        <div class="price-card">
+          <h3>PDF Interactivo</h3>
+          <p class="price">$2000 CLP</p>
+          <p>PDF con botones de ubicación y confirmación.</p>
+        </div>
+        <div class="price-card">
+          <h3>Full</h3>
+          <p class="price">$10.000 CLP</p>
+          <p>
+            Diseño PDF + Web, Animaciones, música, dedicatorias, botones
+            interactivos y más.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta container" data-reveal>
+      <a href="#contacto" class="btn primary">Solicitar invitación</a>
+    </section>
+
+    <!-- CONTACTO (igual que el actual) -->
+    <section class="contact" id="contacto" aria-label="Contacto">
+      <div class="container grid" data-reveal>
+        <div>
+          <h2 class="section-title">Hablemos</h2>
+          <p class="muted2">
+            Cuéntame tu idea y armamos una propuesta a medida.
+          </p>
+          <ul class="muted2">
+            <li>
+              <i class="fa-solid fa-envelope"></i>
+              Email:
+              <a href="mailto:camachodigitalstudio@gmail.com">
+                camachodigitalstudio@gmail.com
+              </a>
+            </li>
+            <li>
+              <i class="fa-brands fa-whatsapp"></i>
+              WhatsApp:
+              <a href="https://wa.me/56966411859" target="_blank">
+                +56 9 6641 1859
+              </a>
+              <!-- Si prefieres llamada directa: <a href="tel:+56912345678">+56 9 1234 5678</a> -->
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <form
+            id="contactForm"
+            class="contact-form"
+            action="https://formspree.io/f/xnnboeqn"
+            method="POST"
+            novalidate
+          >
+            <!-- Nombre -->
+            <div class="field">
+              <label for="name">Nombre</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Tu nombre"
+                pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$"
+                required
+              />
+              <small class="error-msg"></small>
+            </div>
+
+            <!-- Email -->
+            <div class="field">
+              <label for="email">Correo electrónico</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="tucorreo@ejemplo.com"
+                required
+              />
+              <small class="error-msg"></small>
+            </div>
+
+            <!-- Mensaje -->
+            <div class="field">
+              <label for="message">Mensaje</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Escribe tu mensaje aquí..."
+                required
+              ></textarea>
+              <small class="error-msg"></small>
+            </div>
+
+            <!-- Botón -->
+            <button type="submit" class="btn primary">Enviar</button>
+          </form>
+
+          <!-- 👇 MENSAJE GLOBAL -->
+          <div id="formMsg" class="form-msg"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <a href="#inicio" class="btn outline" aria-label="Volver arriba"
+        >Arriba ↑</a
+      >
+      <div class="container">
+        <span
+          >© <span id="year"></span> Camacho Digital Studio. Todos los derechos
+          reservados.</span
+        >
+      </div>
+    </footer>
+    <!-- BOTÓN DE CONTACTO FLOTANTE -->
+    <div class="contact-fab">
+      <button class="fab-main" id="fabMainBtn">✉️</button>
+      <div class="fab-options">
+        <a
+          href="https://wa.me/56966411859"
+          target="_blank"
+          class="fab-option"
+          title="WhatsApp"
+        >
+          <!-- 👇 Aquí insertas tu SVG de WhatsApp -->
+          <img
+            src="./assets/icons/iconos redeswp.png"
+            alt="WhatsApp"
+            width="24"
+            height="24"
+          />
+        </a>
+        <a
+          href="https://www.facebook.com/profile.php?id=61579585425073"
+          target="_blank"
+          class="fab-option"
+          title="Facebook"
+        >
+          <img
+            src="./assets/icons/iconos redes-fb.png"
+            alt="Facebook"
+            width="24"
+            height="24"
+          />
+        </a>
+        <a
+          href="https://www.instagram.com/camacho_digital_studio?igsh=MWFzbHlkYWJiam5zbg%3D%3D&utm_source=qr"
+          target="_blank"
+          class="fab-option"
+          title="Instagram"
+        >
+          <img
+            src="./assets/icons/iconos redes-ig.png"
+            alt="Instagram"
+            width="24"
+            height="24"
+          />
+        </a>
+        <a
+          href="mailto:camachodigitalstudio@gmail.com"
+          class="fab-option"
+          title="Correo"
+        >
+          <img
+            src="./assets/icons/iconos redes-mail.png"
+            alt="Correo"
+            width="24"
+            height="24"
+          />
+        </a>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="main.js" defer></script>
+    <script src="servicios.js" defer></script>
+  </body>
+</html>

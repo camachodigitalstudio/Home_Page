@@ -223,75 +223,78 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   // ==================== TESTIMONIOS ROTATIVOS ====================
-  const quotes = document.querySelectorAll(".testimonials .quote");
+  const quotes = document.querySelectorAll(".quote");
   let currentQuote = 0;
 
-  function showNextQuote() {
-    quotes[currentQuote].classList.remove("active");
-    currentQuote = (currentQuote + 1) % quotes.length;
-    quotes[currentQuote].classList.add("active");
-  }
+  if (quotes.length > 0) {
+    function showNextQuote() {
+      quotes[currentQuote].classList.remove("active");
+      currentQuote = (currentQuote + 1) % quotes.length;
+      quotes[currentQuote].classList.add("active");
+    }
 
-  // Cambiar cada 5 segundos
-  setInterval(showNextQuote, 6000);
+    setInterval(showNextQuote, 5000);
+  }
 
   // ==================== BOTÓN FLOTANTE DE CONTACTO ====================
   const fabMainBtn = document.getElementById("fabMainBtn");
   const fabOptions = document.querySelector(".fab-options");
 
-  fabMainBtn.addEventListener("click", () => {
-    fabMainBtn.classList.toggle("active");
-    fabOptions.classList.toggle("show");
-  });
+  if (fabMainBtn && fabOptions) {
+    fabMainBtn.addEventListener("click", () => {
+      fabMainBtn.classList.toggle("active");
+      fabOptions.classList.toggle("show");
+    });
+  }
 
   // ==================== HERO BACKGROUND ROTATIVO ====================
   // ==================== HERO BACKGROUND ROTATIVO ====================
   const heroEl = document.querySelector(".hero");
-  const images = [
-    "./assets/hero/hero.webp",
-    "./assets/hero/hero2.webp",
-    "./assets/hero/hero3.webp",
-  ];
-  let current = 0;
 
-  // Precargar imágenes
-  const preloadImages = (srcArray) => {
-    srcArray.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  };
-  preloadImages(images);
+  if (heroEl) {
+    const images = [
+      "./assets/hero/hero.webp",
+      "./assets/hero/hero2.webp",
+      "./assets/hero/hero3.webp",
+    ];
+    let current = 0;
 
-  // Capa inicial
-  const bg = document.createElement("div");
-  bg.classList.add("hero-bg");
-  bg.style.backgroundImage = `url(${images[current]})`;
-  bg.style.opacity = "1";
-  heroEl.appendChild(bg);
-
-  setInterval(() => {
-    current = (current + 1) % images.length;
-    const nextImg = images[current];
-
-    // Crear nueva capa para el fade
-    const fadeLayer = document.createElement("div");
-    fadeLayer.classList.add("hero-bg");
-    fadeLayer.style.backgroundImage = `url(${nextImg})`;
-    fadeLayer.style.opacity = "0";
-    heroEl.appendChild(fadeLayer);
-
-    // Forzar reflow y aplicar fade-in
-    requestAnimationFrame(() => {
-      fadeLayer.style.opacity = "1";
-    });
-
-    // Cuando termine la transición, quitamos la capa anterior
-    fadeLayer.addEventListener("transitionend", () => {
-      const allLayers = heroEl.querySelectorAll(".hero-bg");
-      allLayers.forEach((layer, i) => {
-        if (i < allLayers.length - 1) heroEl.removeChild(layer);
+    // Precargar imágenes
+    const preloadImages = (srcArray) => {
+      srcArray.forEach((src) => {
+        const img = new Image();
+        img.src = src;
       });
-    });
-  }, 3000);
+    };
+    preloadImages(images);
+
+    // Capa inicial
+    const bg = document.createElement("div");
+    bg.classList.add("hero-bg");
+    bg.style.backgroundImage = `url(${images[current]})`;
+    bg.style.opacity = "1";
+    heroEl.appendChild(bg);
+
+    setInterval(() => {
+      current = (current + 1) % images.length;
+      const nextImg = images[current];
+
+      const fadeLayer = document.createElement("div");
+      fadeLayer.classList.add("hero-bg");
+      fadeLayer.style.backgroundImage = `url(${nextImg})`;
+      fadeLayer.style.opacity = "0";
+      heroEl.appendChild(fadeLayer);
+
+      requestAnimationFrame(() => {
+        fadeLayer.style.opacity = "1";
+      });
+
+      fadeLayer.addEventListener("transitionend", () => {
+        const allLayers = heroEl.querySelectorAll(".hero-bg");
+        allLayers.forEach((layer, i) => {
+          if (i < allLayers.length - 1) heroEl.removeChild(layer);
+        });
+      });
+    }, 3000);
+  }
 });
