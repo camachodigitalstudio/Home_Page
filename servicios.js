@@ -15,4 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .querySelectorAll("[data-reveal]")
     .forEach((el) => observer.observe(el));
+  document.querySelectorAll(".toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const extras = btn.previousElementSibling.querySelectorAll(".extra");
+      extras.forEach((el) => el.classList.toggle("hidden"));
+
+      btn.textContent = btn.textContent === "Ver más" ? "Ver menos" : "Ver más";
+    });
+  });
 });

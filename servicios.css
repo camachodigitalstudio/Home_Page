@@ -9,7 +9,7 @@
   padding: 4rem 1.5rem;
   background: var(--clr-bg-alt);
   border-radius: 12px;
-  margin-top: 70px; /* separa del header fijo */
+  margin-top: 10px; /* separa del header fijo */
 }
 
 .hero-servicio .container {
@@ -25,11 +25,24 @@
   height: auto; /* mantiene proporción 16:9 */
   border-radius: 12px; /* opcional */
 }
+.hero-servicio h1 {
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+  color: white;
+}
 /* ==================== Detalle ==================== */
+.detalle-servicio {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .detalle-servicio ul {
   list-style: none;
   padding: 0;
   margin: 2rem 0;
+  display: inline-block;
+  text-align: left;
 }
 
 .detalle-servicio li {
@@ -46,40 +59,107 @@
 }
 
 /* ==================== Precios ==================== */
+/* ===== PRECIOS ===== */
+.precios {
+  text-align: center;
+  margin: 4rem auto;
+}
+.precios-subtitulo {
+  font-size: 1.1rem;
+  color: #666; /* un tono más suave que el texto normal */
+  margin-top: -1rem; /* acerca un poco al título */
+  margin-bottom: 2rem; /* espacio con las tarjetas */
+}
+
+.precios h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
 .pricing-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  margin-top: 2rem;
+  margin-bottom: 3rem;
+  align-items: stretch; /* 👈 asegura que todas las tarjetas tengan misma altura */
 }
 
 .price-card {
   background: var(--clr-bg-alt);
   padding: 2rem;
   border-radius: 12px;
-  text-align: center;
+  display: flex; /* 👈 flexbox interno */
+  flex-direction: column; /* apilar elementos */
+  justify-content: space-between; /* reparte para que no quede hueco */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* 👈 asegura que la franja no se desborde */
 }
 
 .price-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .price-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: white;
+  text-align: center;
+}
+
+.price-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.price-card ul li {
   margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.price-card ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--clr-primary);
 }
 
 .price-card .price {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--clr-primary);
-  margin-bottom: 0.5rem;
+  margin: 1rem -2rem -2rem; /* ya no toca tanto el contenido */
+  padding: 0.7rem; /* menos alto */
+  background: var(--clr-primary);
+  color: #fff;
+  font-size: 1.2rem; /* un poco más compacto */
+  font-weight: bold;
+  text-align: center;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.price-card.destacado {
+.price-card.pack {
   border: 2px solid var(--clr-primary);
   background: rgba(0, 123, 255, 0.1);
+}
+.hidden {
+  display: none;
+}
+
+.toggle {
+  background: none;
+  border: none;
+  color: var(--clr-primary);
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.toggle:hover {
+  color: var(--clr-secondary); /* usa tu color secundario si tienes */
 }
 
 /* ==================== CTA ==================== */
@@ -96,5 +176,10 @@
   .hero-servicio .icono-servicio {
     width: 100%; /* ocupa casi toda la pantalla */
     max-width: 1600px; /* límite según tu imagen */
+  }
+}
+@media (max-width: 600px) {
+  .hero-servicio h1 {
+    font-size: 2rem;
   }
 }
