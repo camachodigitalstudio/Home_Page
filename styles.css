@@ -457,7 +457,7 @@ section {
     all: unset; /* resetea todos los estilos nativos del summary */
     display: block;
     text-align: center;
-    padding: 0.6rem 1rem;
+    padding: 0rem 0rem;
     cursor: pointer;
     font-weight: 500;
     color: var(--clr-white);
