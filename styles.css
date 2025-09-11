@@ -448,6 +448,67 @@ section {
     border-radius: 2px;
     transition: all 0.3s;
   }
+  /* Estilos para el bloque desplegable en móvil */
+  .mobile-panel details {
+    width: 100%;
+  }
+
+  .mobile-panel summary {
+    all: unset; /* resetea todos los estilos nativos del summary */
+    display: block;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--clr-white);
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .mobile-panel summary::after {
+    content: "›";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transition: transform 0.3s;
+    font-size: 0.9rem;
+  }
+
+  .mobile-panel details[open] summary::after {
+    transform: translateY(-50%) rotate(-90deg);
+  }
+  .mobile-panel details[open] summary {
+    background: rgba(255, 255, 255, 0.05); /* leve sombreado */
+  }
+
+  /* Estilo para los enlaces internos */
+  .mobile-panel details a {
+    display: block;
+    padding: 0.6rem 2rem; /* sangría mayor que los principales */
+    font-size: 0.9rem;
+    color: var(--clr-text);
+    opacity: 0.85; /* más tenue */
+  }
+
+  .mobile-panel details a:hover {
+    color: var(--clr-accent);
+    opacity: 1;
+  }
+  .mobile-panel nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .mobile-panel nav > * {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-panel nav > *:last-child {
+    border-bottom: none;
+  }
 
   /* Panel móvil tipo sidebar */
   .mobile-panel {
@@ -664,4 +725,48 @@ section {
 .service-card:visited h3,
 .service-card:visited p {
   color: var(--clr-white); /* mantiene el mismo color al visitar */
+}
+/* --- Dropdown en escritorio --- */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Botón de Servicios en escritorio */
+.dropbtn {
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--clr-text);
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block; /* igual que los <a> */
+  line-height: 1.6; /* asegura alineación vertical */
+  padding: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #000000;
+  min-width: 180px;
+  background: rgba(14, 15, 18, 0.9);
+  z-index: 10;
+  border-radius: 8px;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Mostrar menú al pasar el mouse */
+.dropdown:hover .dropdown-content {
+  display: block;
 }

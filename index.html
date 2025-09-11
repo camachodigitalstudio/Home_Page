@@ -58,7 +58,16 @@
         </a>
         <nav class="primary-nav" aria-label="Navegación principal">
           <a href="#inicio">Inicio</a>
-          <a href="#servicios">Servicios</a>
+          <!-- Servicios con submenú -->
+          <div class="dropdown">
+            <a href="#servicios" class="dropbtn">Servicios</a>
+            <div class="dropdown-content">
+              <a href="./invitacionesDigitales.html">Invitaciones digitales</a>
+              <a href="grafico.html">Diseño gráfico</a>
+              <a href="web.html">Soluciones web</a>
+            </div>
+          </div>
+          <!--<a href="#servicios">Servicios</a>-->
           <a href="#portafolio">Portafolio</a>
           <a href="#testimonios">Testimonios</a>
           <a href="#contacto">Contacto</a>
@@ -77,7 +86,15 @@
       <div class="mobile-panel" id="mobilePanel">
         <nav aria-label="Navegación móvil">
           <a href="#inicio">Inicio</a>
-          <a href="#servicios">Servicios</a>
+          <details>
+            <summary>
+              <a href="#servicios">Servicios</a>
+            </summary>
+            <a href="./invitacionesDigitales.html">Invitaciones digitales</a>
+            <a href="grafico.html">Diseño gráfico</a>
+            <a href="web.html">Soluciones web</a>
+          </details>
+          <!--<a href="#servicios">Servicios</a>-->
           <a href="#portafolio">Portafolio</a>
           <a href="#testimonios">Testimonios</a>
           <a href="#contacto">Contacto</a>
