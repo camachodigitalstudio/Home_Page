@@ -219,6 +219,56 @@ body {
   height: auto; /* mantiene proporción */
   display: inline-block;
 }
+/* ===== ANIMACIONES HERO ===== */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Estado inicial (ocultos) */
+.hero .kicker,
+.hero .hero-logo,
+.hero p,
+.hero .actions {
+  opacity: 0;
+}
+
+/* Aparecen desde la izquierda */
+.hero .kicker {
+  animation: slideInLeft 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+.hero .hero-logo {
+  animation: slideInLeft 1s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+/* Aparecen desde la derecha */
+.hero p {
+  animation: slideInRight 1s ease-out forwards;
+  animation-delay: 1s;
+}
+.hero .actions {
+  animation: slideInRight 1s ease-out forwards;
+  animation-delay: 1.3s;
+}
 
 /* ==================== Carousel ==================== */
 .carousel {
