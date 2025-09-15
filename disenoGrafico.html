@@ -84,14 +84,19 @@
       <div class="mobile-panel" id="mobilePanel">
         <nav aria-label="Navegación móvil">
           <a href="./index.html#inicio">Inicio</a>
-          <details>
-            <summary>
+          <div class="submenu">
+            <div class="submenu-header">
               <a href="./index.html#servicios">Servicios</a>
-            </summary>
-            <a href="./invitacionesDigitales.html">Invitaciones digitales</a>
-            <a href="grafico.html">Diseño gráfico</a>
-            <a href="./solucionesWeb.html">Desarrollo web</a>
-          </details>
+              <button class="submenu-toggle" aria-label="Desplegar servicios">
+                ›
+              </button>
+            </div>
+            <div class="submenu-content">
+              <a href="./invitacionesDigitales.html">Invitaciones digitales</a>
+              <a href="./disenoGrafico.html">Diseño gráfico</a>
+              <a href="./solucionesWeb.html">Desarrollo web</a>
+            </div>
+          </div>
           <a href="./index.html#portafolio">Portafolio</a>
           <a href="./index.html#testimonios">Testimonios</a>
           <a href="#contacto">Contacto</a>
@@ -284,6 +289,31 @@
           </ul>
           <button class="toggle">Ver más</button>
           <p class="price">5.000 – 8.000 CLP</p>
+        </div>
+      </div>
+
+      <h2>Packs Promocionales</h2>
+      <div class="pricing-grid">
+        <div class="price-card pack">
+          <h3>🎯 Pack Básico – “Tu Marca desde Cero”</h3>
+          <ul>
+            <h3>📦 Qué incluye</h3>
+            <li>Logo sencillo</li>
+            <li>Tarjeta Personal (solo diseño, sin impresión)</li>
+            <li>Flyer o Banner Publicitario (elige uno)</li>
+          </ul>
+          <p class="price">25.000 CLP</p>
+        </div>
+        <div class="price-card pack">
+          <h3>🚀 Pack Avanzado – “Tu Marca Completa”</h3>
+          <ul>
+            <h3>📦 Qué incluye</h3>
+            <li>Logo elaborado / profesional</li>
+            <li>Tarjeta Personal (solo diseño, sin impresión)</li>
+            <li>Flyer Publicitario</li>
+            <li>Banner Publicitario</li>
+          </ul>
+          <p class="price">40.000 CLP</p>
         </div>
       </div>
     </section>

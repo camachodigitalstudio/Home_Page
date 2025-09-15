@@ -246,6 +246,14 @@ document.addEventListener("DOMContentLoaded", () => {
       fabOptions.classList.toggle("show");
     });
   }
+  //manu celular
+  document.querySelectorAll(".submenu-toggle").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const submenu = btn.closest(".submenu");
+      submenu.classList.toggle("open");
+    });
+  });
 
   // ==================== HERO BACKGROUND ROTATIVO ====================
   // ==================== HERO BACKGROUND ROTATIVO ====================

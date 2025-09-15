@@ -497,6 +497,52 @@ section {
   .hero-logo img {
     max-width: 200px;
   }
+  /* Submenú móvil */
+  .submenu {
+    width: 100%;
+  }
+
+  .submenu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+    color: var(--clr-white);
+    font-weight: 500;
+    position: relative;
+  }
+
+  .submenu-toggle {
+    background: none;
+    border: none;
+    color: var(--clr-white);
+    font-size: 1rem;
+    cursor: pointer;
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+  }
+
+  .submenu.open .submenu-toggle {
+    transform: rotate(-90deg);
+  }
+
+  .submenu-content {
+    display: none;
+    flex-direction: column;
+    padding-left: 1.5rem;
+  }
+
+  .submenu.open .submenu-content {
+    display: flex;
+  }
+
+  .submenu-content a {
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    color: var(--clr-text);
+  }
+
   .hamburger span {
     display: block;
     width: 25px;
