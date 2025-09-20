@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flores Amarillas Animadas</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(to bottom, #0d1e3a, #1e3a5f);
+        min-height: 100vh;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .title {
+        color: #ffd600;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(255, 214, 0, 0.7);
+        font-size: 2rem;
+        margin-bottom: 20px;
+        z-index: 20;
+      }
+
+      .flowers-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 60vh;
+        width: 100%;
+        gap: 80px;
+        z-index: 10;
+        perspective: 1000px;
+      }
+
+      .flower {
+        position: relative;
+        height: 280px;
+        width: 130px;
+        display: flex;
+        justify-content: center;
+        animation: sproutFlower 3s ease-out forwards,
+          windAnimation 8s 3s infinite alternate ease-in-out;
+        transform-style: preserve-3d;
+        transform-origin: bottom center;
+        opacity: 0;
+      }
+      .flower:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      .flower:nth-child(2) {
+        animation-delay: 1s;
+      }
+
+      .flower:nth-child(3) {
+        animation-delay: 2s;
+      }
+
+      .stem {
+        position: absolute;
+        bottom: 0;
+        left: 30%; /* centramos en la mitad */
+        transform: translateX(
+          -50%
+        ); /* lo movemos a la izquierda la mitad de su ancho */
+        width: 12px;
+        height: 240px;
+        background: linear-gradient(
+          to top,
+          #2e7d32 5%,
+          #4caf50 30%,
+          #66bb6a 60%,
+          #81c784 85%
+        );
+        border-radius: 6px;
+        z-index: 2;
+        box-shadow: inset 0 0 12px rgba(46, 125, 50, 0.5),
+          3px 0 8px rgba(0, 0, 0, 0.15), -1px 0 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(46, 125, 50, 0.3);
+        animation: growStem 2s ease-out forwards;
+        transform-origin: bottom center;
+        opacity: 0;
+      }
+
+      .flower-head {
+        position: absolute;
+        top: 20px;
+        width: 110px;
+        height: 110px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: growFlower 2s forwards;
+        opacity: 0;
+        z-index: 3;
+      }
+
+      .flower-center {
+        width: 45px;
+        height: 45px;
+        background: radial-gradient(
+          circle,
+          #8b4513 15%,
+          #a0522d 30%,
+          #cd853f 50%,
+          #daa520 70%
+        );
+        border-radius: 50%;
+        position: relative;
+        z-index: 4;
+        box-shadow: 0 0 20px rgba(139, 69, 19, 0.8),
+          inset 0 0 15px rgba(218, 165, 32, 0.7);
+        border: 2px solid rgba(160, 82, 45, 0.5);
+        animation: growCenter 2.5s ease-out forwards;
+        opacity: 0;
+      }
+
+      .petal {
+        position: absolute;
+        width: 50px;
+        height: 80px;
+        background: linear-gradient(to bottom, #ffd700, #ffc107, #ff8c00);
+        border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+        transform-origin: center 40px;
+        z-index: 3;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.8),
+          0 0 25px rgba(255, 193, 7, 0.5),
+          inset 0 4px 15px rgba(255, 255, 240, 0.7),
+          inset 0 -4px 10px rgba(255, 140, 0, 0.5);
+        animation: growPetal 2s ease-out forwards, glow 3s 2s infinite alternate;
+        margin: 2px;
+        border: 1px solid rgba(255, 165, 0, 0.4);
+        opacity: 0;
+      }
+      .leaf {
+        position: absolute;
+        width: 35px;
+        height: 20px;
+        background: linear-gradient(
+          to right,
+          #4caf50 40%,
+          #388e3c 60%,
+          #2e7d32 80%
+        );
+        border-radius: 0 60% 60% 0;
+        z-index: 2;
+        box-shadow: inset 0 0 8px rgba(76, 175, 80, 0.4),
+          2px 2px 5px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(46, 125, 50, 0.3);
+
+        left: 50%; /* referencia al centro */
+        transform: translateX(-50%); /* centrado base */
+      }
+
+      .leaf-left {
+        top: 100px;
+        transform: translateX(-50%) rotate(-155deg); /* se apoya al tallo y rota hacia la izquierda */
+      }
+
+      .leaf-right {
+        top: 130px;
+        transform: translateX(-50%) rotate(185deg) scaleX(-1); /* se apoya al tallo y rota hacia la derecha */
+      }
+
+      .falling-petals-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 5;
+      }
+
+      .falling-petal {
+        position: absolute;
+        width: 20px;
+        height: 30px;
+        background: linear-gradient(to bottom, #ffeb3b, #ffd600);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        opacity: 0;
+        box-shadow: 0 0 5px rgba(255, 235, 59, 0.7),
+          inset 0 0 5px rgba(255, 255, 255, 0.3);
+        animation: falling linear forwards;
+      }
+
+      .buttons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px 0;
+        z-index: 20;
+      }
+
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-whatsapp {
+        background-color: #25d366;
+        color: white;
+      }
+
+      .btn-order {
+        background: linear-gradient(to right, #ffd600, #ff9800);
+        color: white;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      /* Animaciones */
+      @keyframes growFlower {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        70% {
+          transform: scale(1.1);
+          opacity: 0.9;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes sproutFlower {
+        0% {
+          transform: translateY(100px) scale(0.1);
+          opacity: 0;
+        }
+        50% {
+          transform: translateY(-20px) scale(1.1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes growStem {
+        0% {
+          transform: scaleY(0);
+          opacity: 0;
+        }
+        100% {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes growPetal {
+        0% {
+          transform: rotate(var(--petal-rotation)) translateY(-40px) scale(0);
+          opacity: 0;
+        }
+        70% {
+          transform: rotate(var(--petal-rotation)) translateY(-40px) scale(1.2);
+          opacity: 0.9;
+        }
+        100% {
+          transform: rotate(var(--petal-rotation)) translateY(-40px) scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes growCenter {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        80% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes windAnimation {
+        0%,
+        100% {
+          transform: translateX(0) rotate(0deg);
+        }
+        25% {
+          transform: translateX(-12px) rotate(-4deg);
+        }
+        50% {
+          transform: translateX(0) rotate(0deg);
+        }
+        75% {
+          transform: translateX(12px) rotate(4deg);
+        }
+      }
+
+      @keyframes glow {
+        0% {
+          box-shadow: 0 0 10px rgba(255, 235, 59, 0.7),
+            0 0 20px rgba(255, 235, 59, 0.4),
+            inset 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        100% {
+          box-shadow: 0 0 15px rgba(255, 235, 59, 0.9),
+            0 0 30px rgba(255, 235, 59, 0.6),
+            inset 0 0 15px rgba(255, 255, 255, 0.7);
+        }
+      }
+
+      @keyframes falling {
+        0% {
+          transform: translateY(-100px) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.8;
+        }
+        80% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .title {
+          font-size: 1.5rem;
+          margin-bottom: 15px;
+        }
+
+        .flowers-container {
+          gap: 50px;
+          height: 50vh;
+        }
+
+        .flower {
+          height: 200px;
+          width: 100px;
+        }
+
+        .stem {
+          height: 160px;
+          width: 8px;
+        }
+
+        .flower-head {
+          width: 90px;
+          height: 90px;
+        }
+
+        .petal {
+          width: 35px;
+          height: 60px;
+          transform-origin: center 30px;
+        }
+
+        .flower-center {
+          width: 22px;
+          height: 22px;
+        }
+
+        .leaf {
+          width: 30px;
+          height: 18px;
+        }
+
+        .leaf-left {
+          top: 90px;
+          left: -8px;
+        }
+
+        .leaf-right {
+          top: 115px;
+          right: -8px;
+        }
+
+        .buttons-container {
+          max-width: 250px;
+        }
+
+        .btn {
+          padding: 12px 18px;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .flowers-container {
+          justify-content: center !important;
+          gap: 0 !important;
+        }
+
+        .flower {
+          display: block !important;
+          margin: 0 auto !important;
+          opacity: 1 !important;
+          animation-play-state: running !important;
+          width: 130px !important;
+          height: 280px !important;
+        }
+
+        /* Ocultar flores izquierda y derecha */
+        /*.flower:nth-child(1),
+        .flower:nth-child(3) {
+          display: none !important;
+        }*/
+      }
+      .name {
+        font-family: "Brush Script MT", "Segoe Script", cursive; /* estilo manuscrito */
+        font-size: 5rem; /* tamaño llamativo */
+        color: #fff533; /* amarillo brillante */
+        text-shadow: 0 0 10px rgba(255, 129, 51, 0.8),
+          0 0 20px rgba(255, 94, 7, 0.7), 0 0 30px rgba(255, 140, 0, 0.6); /* efecto iluminado */
+        margin-bottom: 15px; /* separación de las flores */
+        z-index: 15;
+        position: relative;
+        animation: glowText 3s ease-in-out infinite alternate;
+      }
+
+      /* Animación suave de brillo */
+      @keyframes glowText {
+        0% {
+          text-shadow: 0 0 5px rgba(255, 221, 51, 0.7),
+            0 0 10px rgba(255, 193, 7, 0.6), 0 0 20px rgba(255, 140, 0, 0.5);
+        }
+        100% {
+          text-shadow: 0 0 15px rgba(255, 221, 51, 1),
+            0 0 30px rgba(255, 193, 7, 0.9), 0 0 45px rgba(255, 140, 0, 0.8);
+        }
+      }
+      .btn-music {
+        background: linear-gradient(to right, #ff9800, #ffd600);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 15px 0 25px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .btn-music:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .btn-music:active {
+        transform: scale(0.95);
+      }
+    </style>
+    <meta property="og:image" content="../assets/img/og-cover.webp" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../assets/favicon_io/site.webmanifest" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">
+        Te regalo <br />flores amarillas <br />en este día especial 🌼
+      </h1>
+      <!-- 👈 Nuevo -->
+      <button id="music-btn" class="btn-music">🎵 Reproducir Canción</button>
+
+      <audio id="bg-music" src="./floresAmarillas.mp3"></audio>
+      <div class="flowers-container">
+        <!-- Flores generadas con JavaScript -->
+      </div>
+
+      <div class="falling-petals-container">
+        <!-- Pétalos cayendo generados con JavaScript -->
+      </div>
+
+      <div class="buttons-container">
+        <!-- Botón WhatsApp con tu número -->
+        <button
+          class="btn btn-whatsapp"
+          onclick="window.open('https://wa.me/56966411859?text=Hola,%20me%20interesan%20las%20flores%20amarillas', '_blank')"
+        >
+          <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+        </button>
+
+        <!-- Botón de pedido con redirección opcional -->
+        <button
+          class="btn btn-order"
+          onclick="window.open('https://wa.me/56966411859?text=¡Hola!%20Quiero%20pedir%20mis%20flores%20amarillas', '_blank')"
+        >
+          Pide tus flores amarillas aquí
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const flowersContainer = document.querySelector(".flowers-container");
+        const fallingContainer = document.querySelector(
+          ".falling-petals-container"
+        );
+
+        // Detectar si es móvil (ancho <= 480px)
+        const isMobile = window.matchMedia("(max-width: 480px)").matches;
+
+        // Crear flores: 3 en escritorio, 1 en móvil (la del centro)
+        const flowerCount = 3;
+        for (let i = 0; i < flowerCount; i++) {
+          createFlower(i);
+        }
+
+        // Iniciar la caída de pétalos con menor frecuencia en móvil
+        startPetalFall(isMobile);
+
+        function createFlower(index) {
+          const flower = document.createElement("div");
+          flower.className = "flower";
+          flower.style.animationDelay = `${index * 0.4}s`;
+
+          const stem = document.createElement("div");
+          stem.className = "stem";
+          stem.style.animationDelay = `${index * 0.4 + 0.2}s`;
+
+          const flowerHead = document.createElement("div");
+          flowerHead.className = "flower-head";
+          flowerHead.style.animationDelay = `${index * 0.4 + 0.8}s`;
+
+          const center = document.createElement("div");
+          center.className = "flower-center";
+          center.style.animationDelay = `${index * 0.4 + 1.2}s`;
+
+          // En móvil menos pétalos (7 en vez de 14)
+          const petalsCount = isMobile ? 7 : 14;
+
+          for (let j = 0; j < petalsCount; j++) {
+            const petal = document.createElement("div");
+            petal.className = "petal";
+            // Ajustar rotación para distribuir los pétalos en 360 grados
+            petal.style.setProperty(
+              "--petal-rotation",
+              `${(360 / petalsCount) * j}deg`
+            );
+            petal.style.animationDelay = `${j * 0.05 + index * 0.3 + 1}s`;
+            flowerHead.appendChild(petal);
+          }
+
+          // Añadir centro a la cabeza de la flor
+          flowerHead.appendChild(center);
+
+          // Crear hojas
+          const leafLeft = document.createElement("div");
+          leafLeft.className = "leaf leaf-left";
+
+          const leafRight = document.createElement("div");
+          leafRight.className = "leaf leaf-right";
+
+          // Ensamblar la flor
+          flower.appendChild(stem);
+          flower.appendChild(leafLeft);
+          flower.appendChild(leafRight);
+          flower.appendChild(flowerHead);
+
+          // Añadir la flor al contenedor
+          flowersContainer.appendChild(flower);
+        }
+
+        function startPetalFall(isMobile) {
+          // Intervalo mayor en móvil para menos pétalos cayendo
+          const intervalTime = isMobile ? 900 : 300;
+
+          setInterval(() => {
+            createFallingPetal();
+          }, intervalTime);
+        }
+
+        function createFallingPetal() {
+          const petal = document.createElement("div");
+          petal.className = "falling-petal";
+
+          // Posición horizontal aleatoria
+          const leftPos = Math.random() * 100;
+          petal.style.left = `${leftPos}%`;
+
+          // Tamaño aleatorio
+          const size = 10 + Math.random() * 15;
+          petal.style.width = `${size}px`;
+          petal.style.height = `${size * 1.5}px`;
+
+          // Rotación inicial aleatoria
+          const initialRotate = Math.random() * 360;
+          petal.style.transform = `rotate(${initialRotate}deg)`;
+
+          // Duración y delay de animación aleatorios
+          const animationDuration = 8 + Math.random() * 7; // Más tiempo para evitar acumulación
+          const animationDelay = Math.random() * 0.5; // Menor delay para evitar acumulación
+          petal.style.animation = `falling ${animationDuration}s ${animationDelay}s linear forwards`;
+
+          // Añadir al contenedor
+          fallingContainer.appendChild(petal);
+
+          // Eliminar el pétalo después de que termine la animación
+          setTimeout(() => {
+            if (petal.parentNode) {
+              petal.parentNode.removeChild(petal);
+            }
+          }, (animationDuration + animationDelay) * 1000);
+        }
+        const musicBtn = document.getElementById("music-btn");
+        const music = document.getElementById("bg-music");
+        let isPlaying = false;
+
+        musicBtn.addEventListener("click", () => {
+          if (isPlaying) {
+            music.pause();
+            musicBtn.textContent = "🎵 Reproducir Canción";
+          } else {
+            music.play();
+            musicBtn.textContent = "⏸️ Pausar Canción";
+          }
+          isPlaying = !isPlaying;
+        });
+      });
+    </script>
+  </body>
+</html>
